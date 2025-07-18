@@ -1,6 +1,13 @@
 # 🔐 Privacy Policy Scraper
 
 This Python script scrapes privacy policy links and content from a list of websites and exports the data to a CSV file.
+## 📥 Clone & Run
+
+```bash
+git clone https://github.com/msnabiel/privacy-policy.git
+cd privacy-policy
+python main.py
+```
 
 ## 📂 Project Structure
 
@@ -27,13 +34,9 @@ privacy-scrape/
 
 ## 📦 Requirements
 
-Create a virtual environment and install dependencies:
+install dependencies:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate       # macOS/Linux
-# .venv\Scripts\activate.bat    # Windows
-
 pip install -r requirements.txt
 ````
 
