@@ -9,7 +9,7 @@ import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 from websites import websites
-
+import os
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -249,11 +249,13 @@ class PrivacyPolicyScraper:
         
         return results
     
+
     def save_results(self, results):
-        """Save results to CSV with additional metadata"""
-        timestamp = time.strftime("%Y%m%d_%H%M%S")
-        filename = f"privacy_policies_{timestamp}.csv"
+        """Save results to CSV inside /claude/ directory with fixed filenames"""
+        os.makedirs("claude", exist_ok=True)  # Create folder if it doesn't exist
         
+        # Save full results
+        filename = os.path.join("claude", "privacy_policies.csv")
         with open(filename, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow([
@@ -265,7 +267,6 @@ class PrivacyPolicyScraper:
                 "Text Length",
                 "Scrape Timestamp"
             ])
-            
             for result in results:
                 writer.writerow([
                     result['company'],
@@ -276,15 +277,13 @@ class PrivacyPolicyScraper:
                     len(result['text']),
                     time.strftime("%Y-%m-%d %H:%M:%S")
                 ])
-        
         logger.info(f"✅ Results saved to {filename}")
         
-        # Also save a summary CSV
-        summary_filename = f"privacy_policies_summary_{timestamp}.csv"
+        # Save summary results
+        summary_filename = os.path.join("claude", "privacy_policies_summary.csv")
         with open(summary_filename, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["Company", "Website", "Privacy Policy URL", "Status", "Text Length"])
-            
             for result in results:
                 writer.writerow([
                     result['company'],
@@ -293,8 +292,8 @@ class PrivacyPolicyScraper:
                     result['status'],
                     len(result['text'])
                 ])
-        
         logger.info(f"✅ Summary saved to {summary_filename}")
+
 
 def main():
     """Main function to run the scraper"""
