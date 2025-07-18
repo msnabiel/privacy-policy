@@ -5,31 +5,24 @@ __pycache__/
 
 # Virtual environment
 .venv/
+venv/
+env/
+ENV/
 
-# macOS
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# macOS system files
 .DS_Store
 
-# VS Code
-.vscode/
-
-# Output files
-privacy_policies.csv
-
-# Logs
+# Python-specific
 *.log
-
-# Jupyter Notebook checkpoints (in case)
-.ipynb_checkpoints/
-
-# Python
-__pycache__/
+*.pot
 *.pyc
-.venv/
-.env
+*.pyo
+*.pyd
 
-# Output
-privacy_policies_*.csv
-privacy_policies_summary_*.csv
-
-# VSCode
-.vscode/
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
