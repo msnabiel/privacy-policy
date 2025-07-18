@@ -20,3 +20,16 @@ privacy_policies.csv
 
 # Jupyter Notebook checkpoints (in case)
 .ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Output
+privacy_policies_*.csv
+privacy_policies_summary_*.csv
+
+# VSCode
+.vscode/
